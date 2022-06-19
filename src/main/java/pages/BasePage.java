@@ -32,7 +32,6 @@ public abstract class BasePage {
     }
 
     public void waitUntilJsIsReady() {
-        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
         webDriverWait.until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
     }
