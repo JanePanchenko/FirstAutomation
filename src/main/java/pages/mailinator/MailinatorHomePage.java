@@ -1,15 +1,18 @@
 package pages.mailinator;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 
 public class MailinatorHomePage extends BasePage {
 
     private static final String HOME_PAGE_URL = "https://www.mailinator.com/v4/public/inboxes.jsp";
 
-    private By searchEmailInputField = By.className("primary-input");
-    private By searchButton = By.className("primary-btn");
+    @FindBy(className = "primary-input")
+    private WebElement searchEmailInputField;
+    @FindBy(className = "primary-btn")
+    private WebElement searchButton;
 
     public MailinatorHomePage(WebDriver driver) {
         super(driver);
@@ -17,7 +20,7 @@ public class MailinatorHomePage extends BasePage {
     }
 
     public void loginToInbox(String email) {
-        driver.findElement(searchEmailInputField).sendKeys(email);
-        driver.findElement(searchButton).click();
+        searchEmailInputField.sendKeys(email);
+        searchButton.click();
     }
 }

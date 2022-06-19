@@ -18,7 +18,7 @@ public class UkrNetTest {
 
     private static final String MAILINATOR_EMAIL = "Yevheniia_Panchenko@mailinator.com";
     private static final String URK_NET_EMAIL = "Yevheniia_Panchenko@ukr.net";
-    private static final String UKR_NET_PASSWORD = "*******";
+    private static final String UKR_NET_PASSWORD = "Qwerty+-1";
     private static final String EMAIL_SUBJECT = "Email Subject";
     private static final String EMAIL_BODY = "Email Body";
 
