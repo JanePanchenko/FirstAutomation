@@ -1,9 +1,11 @@
-package pages;
+package pages.testleaf;
 
 import bean.ProgrammingLanguage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import pages.BasePage;
 
 import java.util.List;
 
@@ -19,9 +21,12 @@ public class TestLeafCheckboxesPage extends BasePage {
     private static final String ALL_CHECKBOX_OPTIONS_XPATH_EXPRESSION =
             "//div[label[normalize-space()='Select all below checkboxes']]//input";
 
-    private By seleniumCheckboxSelector = By.xpath(SELENIUM_XPATH_EXPRESSION);
-    private By iAmSelectedCheckboxSelector = By.xpath(I_AM_SELECTED_XPATH_EXPRESSION);
-    private By checkboxOptionsSelector = By.xpath(ALL_CHECKBOX_OPTIONS_XPATH_EXPRESSION);
+    @FindBy(xpath = SELENIUM_XPATH_EXPRESSION)
+    private WebElement seleniumCheckbox;
+    @FindBy(xpath = I_AM_SELECTED_XPATH_EXPRESSION)
+    private WebElement iAmSelectedCheckbox;
+    @FindBy(xpath = ALL_CHECKBOX_OPTIONS_XPATH_EXPRESSION)
+    private List<WebElement> checkboxOptions;
 
 
     public TestLeafCheckboxesPage(WebDriver driver) {
@@ -47,34 +52,23 @@ public class TestLeafCheckboxesPage extends BasePage {
     }
 
     public boolean isSeleniumCheckboxChecked() {
-        WebElement seleniumCheckbox = driver.findElement(seleniumCheckboxSelector);
         return seleniumCheckbox.isSelected();
     }
 
     public void clickIAmSelectedCheckbox() {
-        WebElement iAmSelectedCheckbox = driver.findElement(iAmSelectedCheckboxSelector);
         iAmSelectedCheckbox.click();
     }
 
     public boolean isIAmSelectedCheckboxUnchecked() {
-        WebElement iAmSelectedCheckbox = driver.findElement(iAmSelectedCheckboxSelector);
         return !iAmSelectedCheckbox.isSelected();
     }
 
     public void checkAllCheckboxOptions() {
-        List<WebElement> elements = driver.findElements(checkboxOptionsSelector);
-        for (WebElement option : elements) {
-            option.click();
-        }
+        checkboxOptions.forEach(WebElement::click);
     }
 
     public boolean areAllOptionCheckboxesSelected() {
-        List<WebElement> elements = driver.findElements(checkboxOptionsSelector);
-        for (WebElement option : elements) {
-            if (!option.isSelected()) {
-                return false;
-            }
-        }
-        return true;
+        return checkboxOptions.stream()
+                .allMatch(WebElement::isSelected);
     }
 }
