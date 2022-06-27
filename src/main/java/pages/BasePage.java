@@ -18,7 +18,7 @@ public abstract class BasePage {
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 
     public String getPageUrl() {
