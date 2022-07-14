@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -19,6 +20,10 @@ public abstract class BasePage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    }
+
+    public BasePage() {
+      PageFactory.initElements(WebDriverRunner.getWebDriver(), this);
     }
 
     public String getPageUrl() {
